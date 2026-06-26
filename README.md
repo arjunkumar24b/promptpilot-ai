@@ -1,32 +1,35 @@
 # 🚀 PromptPilot AI
 
-## Overview
-
-PromptPilot AI is an AI-powered prompt optimization platform that transforms vague user queries into highly effective, context-rich prompts for Large Language Models (LLMs) such as ChatGPT, Gemini, and Claude.
-
-The application helps users generate precise prompts, improve response quality, and reduce the number of iterations required to get accurate AI-generated answers.
+An AI-powered prompt optimization platform that transforms vague user queries into precise, high-quality prompts for Large Language Models (LLMs) like ChatGPT, Gemini, and Claude.
 
 ---
 
-## ✨ Features
+# 📌 Overview
+
+PromptPilot AI helps users generate better prompts for AI platforms by converting simple or unclear user inputs into detailed, context-rich prompts. The system also provides prompt quality analysis, history management, and analytics.
+
+---
+
+# ✨ Features
 
 * 🤖 AI-powered prompt optimization using Gemini API
-* 📈 Prompt quality scoring system
-* 📝 Prompt history management
+* 📝 Generate detailed and structured prompts
+* 📊 Prompt quality scoring system
+* 💾 Save prompt history in SQLite database
 * 🔍 Search previously generated prompts
 * 🗑️ Delete prompt history
-* 👤 User authentication (Signup/Login)
-* 🔐 JWT-based authentication
-* 💾 SQLite database integration
-* 📊 Analytics dashboard API
-* 🌐 FastAPI backend with REST APIs
-* 🎨 Interactive frontend interface
+* 👤 User Signup and Login
+* 🔐 JWT-based Authentication
+* 📈 Analytics API for prompt statistics
+* 🌐 REST API built with FastAPI
+* 🐳 Docker support for containerized deployment
+* 📖 Interactive Swagger API documentation
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-### Backend
+## Backend
 
 * Python
 * FastAPI
@@ -36,36 +39,38 @@ The application helps users generate precise prompts, improve response quality, 
 * JWT Authentication
 * Passlib (bcrypt)
 
-### Frontend
+## Frontend
 
 * HTML
 * CSS
 * JavaScript
 
-### Other Tools
+## DevOps & Tools
 
-* Git & GitHub
+* Docker
+* Git
+* GitHub
 * Uvicorn
 * Swagger UI
 
 ---
 
-## 📁 Project Structure
+# 📂 Project Structure
 
 ```text
 promptpilot-ai/
 
 ├── app/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── crud.py
 │   ├── auth.py
-│   ├── security.py
-│   ├── scorer.py
+│   ├── crud.py
+│   ├── database.py
 │   ├── gemini_service.py
+│   ├── main.py
+│   ├── models.py
 │   ├── prompt_engine.py
+│   ├── schemas.py
+│   ├── scorer.py
+│   ├── security.py
 │   └── templates.py
 │
 ├── frontend/
@@ -73,6 +78,14 @@ promptpilot-ai/
 │   ├── style.css
 │   └── script.js
 │
+├── screenshots/
+│   ├── docs.png
+│   ├── home.png
+│   └── result.png
+│
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -80,9 +93,9 @@ promptpilot-ai/
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
-### Clone Repository
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/arjunkumar24b/promptpilot-ai.git
@@ -90,21 +103,21 @@ git clone https://github.com/arjunkumar24b/promptpilot-ai.git
 cd promptpilot-ai
 ```
 
-### Create Virtual Environment
+## 2. Create Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-### Activate Virtual Environment
+## 3. Activate Virtual Environment
 
-Windows:
+### Windows
 
 ```bash
 .venv\Scripts\activate
 ```
 
-### Install Dependencies
+## 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -112,7 +125,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔑 Configure Gemini API
+# 🔑 Configure Gemini API
 
 Open:
 
@@ -128,15 +141,19 @@ API_KEY = "YOUR_GEMINI_API_KEY"
 
 with your own Gemini API key.
 
+You can generate a key from:
+
+https://aistudio.google.com/app/apikey
+
 ---
 
-## ▶️ Run the Application
+# ▶️ Run the Application
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Backend URL:
+Backend:
 
 ```text
 http://127.0.0.1:8000
@@ -150,47 +167,83 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📌 API Endpoints
+# 🐳 Docker Support
+
+## Build Docker Image
+
+```bash
+docker build -t promptpilot-ai .
+```
+
+## Run Docker Container
+
+```bash
+docker run -p 8000:8000 promptpilot-ai
+```
+
+---
+
+# 📌 API Endpoints
 
 | Method | Endpoint      | Description               |
 | ------ | ------------- | ------------------------- |
-| GET    | /             | Root Endpoint             |
+| GET    | /             | Welcome Endpoint          |
 | GET    | /health       | Health Check              |
-| POST   | /signup       | User Registration         |
+| POST   | /signup       | Register User             |
 | POST   | /login        | User Login                |
 | POST   | /optimize     | Generate Optimized Prompt |
-| GET    | /history      | View Prompt History       |
+| GET    | /history      | Get Prompt History        |
 | GET    | /search       | Search Prompts            |
 | DELETE | /history/{id} | Delete Prompt             |
-| GET    | /analytics    | View Analytics            |
+| GET    | /analytics    | Prompt Analytics          |
 
 ---
 
-## 🧠 Example Workflow
+# 🧠 Example Workflow
 
-1. User enters a vague query.
-2. PromptPilot sends the query to Gemini AI.
-3. Gemini generates an optimized prompt.
+1. User enters a query.
+2. PromptPilot AI receives the request.
+3. Gemini API generates an optimized prompt.
 4. The system calculates a quality score.
-5. The prompt is stored in SQLite.
-6. User can search, view, or delete prompt history.
+5. Prompt data is stored in SQLite.
+6. User can search, view, or delete previous prompts.
 
 ---
 
-## 🚀 Future Enhancements
+# 📸 Screenshots
+
+## API Documentation
+
+![Swagger UI](screenshots/docs.png)
+
+---
+
+## Prompt Generation Interface
+
+![Frontend](screenshots/home.png)
+
+---
+
+## Optimized Prompt Example
+
+![Result](screenshots/result.png)
+
+---
+
+# 🚀 Future Enhancements
 
 * User-specific prompt history
 * React frontend
-* Docker support
-* Deployment on Render/Vercel
-* Prompt export as PDF
+* Deployment on Render and Vercel
+* Export prompts as PDF
 * Prompt templates marketplace
 * Rate limiting
 * CI/CD pipeline
+* Role-based authentication
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Arjun Kumar**
 
@@ -198,4 +251,4 @@ GitHub: https://github.com/arjunkumar24b
 
 ---
 
-## ⭐ If you like this project, please give it a star!
+# ⭐ If you like this project, give it a star!
