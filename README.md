@@ -1,17 +1,24 @@
 # 🚀 PromptPilot AI
 
-An AI-powered prompt optimization platform that transforms vague user queries into precise, context-rich, and high-quality prompts for AI models like ChatGPT, Gemini, Claude, and other LLMs.
+An AI-powered prompt optimization platform that transforms vague user queries into precise, context-rich, and high-quality prompts for AI models like ChatGPT, Gemini, Claude, and other Large Language Models (LLMs).
 
 ---
 
 ## 🌐 Live Demo
 
+### Frontend Application
+
+**Live Website:**  
+https://your-vercel-url.vercel.app
+
 ### Backend API
 
+**Render Backend:**  
 https://promptpilot-ai-d46a.onrender.com
 
-### Swagger API Documentation
+### Swagger Documentation
 
+**API Docs:**  
 https://promptpilot-ai-d46a.onrender.com/docs
 
 ---
@@ -20,25 +27,33 @@ https://promptpilot-ai-d46a.onrender.com/docs
 
 PromptPilot AI helps users generate effective prompts by converting simple or unclear queries into detailed, structured, and optimized prompts.
 
-The application uses Google's Gemini API to enhance prompt quality and provides additional features such as prompt history, analytics, search, authentication, and Dockerized deployment.
+The application leverages Google's Gemini API to improve prompt quality and provides features such as:
+
+- Prompt optimization
+- Prompt history management
+- Analytics dashboard
+- Search functionality
+- User authentication
+- Cloud deployment
 
 ---
 
 ## ✨ Features
 
-* 🤖 AI-powered prompt optimization using Gemini API
-* 📝 Generate detailed and structured prompts
-* 📊 Prompt quality scoring
-* 💾 Store prompt history using SQLite
-* 🔍 Search previously generated prompts
-* 🗑️ Delete saved prompts
-* 👤 User Signup & Login
-* 🔐 JWT-based Authentication
-* 📈 Analytics API
-* 🌐 REST API built with FastAPI
-* 🐳 Docker support for containerized deployment
-* ☁️ Cloud deployment on Render
-* 📖 Interactive Swagger API documentation
+- 🤖 AI-powered prompt optimization using Gemini API
+- 📝 Generate detailed and structured prompts
+- 📊 Prompt quality scoring
+- 💾 Store prompt history in SQLite
+- 🔍 Search previously generated prompts
+- 🗑️ Delete saved prompts
+- 👤 User Signup & Login
+- 🔐 JWT-based Authentication
+- 📈 Prompt analytics
+- 🌐 REST APIs built with FastAPI
+- 🐳 Docker containerization
+- ☁️ Cloud deployment on Render
+- ▲ Frontend deployment on Vercel
+- 📖 Interactive Swagger API documentation
 
 ---
 
@@ -46,33 +61,34 @@ The application uses Google's Gemini API to enhance prompt quality and provides 
 
 ### Backend
 
-* Python
-* FastAPI
-* SQLAlchemy
-* SQLite
-* Gemini API
-* JWT Authentication
-* Passlib (bcrypt)
+- Python
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Gemini API
+- JWT Authentication
+- Passlib (bcrypt)
 
 ### Frontend
 
-* HTML
-* CSS
-* JavaScript
+- HTML5
+- CSS3
+- JavaScript
 
 ### DevOps & Deployment
 
-* Docker
-* Render
-* Git
-* GitHub
+- Docker
+- Render
+- Vercel
+- Git
+- GitHub
 
-### Additional Tools
+### Additional Libraries
 
-* Uvicorn
-* Swagger UI
-* Pydantic
-* python-dotenv
+- Pydantic
+- Uvicorn
+- python-dotenv
+- Swagger UI
 
 ---
 
@@ -105,20 +121,19 @@ promptpilot-ai/
 │   └── result.png
 │
 ├── Dockerfile
-├── docker-compose.yml
 ├── render.yaml
-├── .dockerignore
-├── .gitignore
 ├── requirements.txt
 ├── README.md
+├── .dockerignore
+├── .gitignore
 └── .env
 ```
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Local Installation
 
-### 1. Clone the Repository
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/arjunkumar24b/promptpilot-ai.git
@@ -126,13 +141,13 @@ git clone https://github.com/arjunkumar24b/promptpilot-ai.git
 cd promptpilot-ai
 ```
 
-### 2. Create Virtual Environment
+### 2️⃣ Create Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 3. Activate Virtual Environment
+### 3️⃣ Activate Virtual Environment
 
 #### Windows
 
@@ -140,13 +155,13 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-#### Linux / MacOS
+#### Linux / macOS
 
 ```bash
 source .venv/bin/activate
 ```
 
-### 4. Install Dependencies
+### 4️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -156,10 +171,10 @@ pip install -r requirements.txt
 
 ## 🔑 Environment Variables
 
-Create a `.env` file in the root directory.
+Create a `.env` file in the project root:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_KEY=your_actual_gemini_api_key
 ```
 
 Generate your Gemini API key from:
@@ -170,13 +185,13 @@ https://aistudio.google.com/app/apikey
 
 ## ▶️ Run Locally
 
-Start the FastAPI server:
+Start FastAPI server:
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Application:
+Application URL:
 
 ```text
 http://127.0.0.1:8000
@@ -206,44 +221,43 @@ docker run -p 8000:8000 promptpilot-ai
 
 ---
 
-## ☁️ Render Deployment
+## ☁️ Cloud Deployment
 
-PromptPilot AI is deployed on Render.
-
-Live API:
+### Backend (Render)
 
 https://promptpilot-ai-d46a.onrender.com
 
-API Docs:
+### Frontend (Vercel)
 
-https://promptpilot-ai-d46a.onrender.com/docs
+https://your-vercel-url.vercel.app
 
 ---
 
 ## 📌 API Endpoints
 
-| Method | Endpoint               | Description               |
-| ------ | ---------------------- | ------------------------- |
-| GET    | `/`                    | Welcome Endpoint          |
-| GET    | `/health`              | Health Check              |
-| POST   | `/signup`              | Register User             |
-| POST   | `/login`               | User Login                |
-| POST   | `/optimize`            | Generate Optimized Prompt |
-| GET    | `/history`             | Get Prompt History        |
-| GET    | `/search`              | Search Prompts            |
-| DELETE | `/history/{prompt_id}` | Delete Prompt             |
-| GET    | `/analytics`           | Prompt Analytics          |
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/` | Welcome Endpoint |
+| GET | `/health` | Health Check |
+| POST | `/signup` | Register User |
+| POST | `/login` | User Login |
+| POST | `/optimize` | Generate Optimized Prompt |
+| GET | `/history` | Get Prompt History |
+| DELETE | `/history/{prompt_id}` | Delete Prompt |
+| GET | `/search` | Search Prompts |
+| GET | `/analytics` | Prompt Analytics |
 
 ---
 
 ## 🔄 Application Workflow
 
 1. User enters a query.
-2. FastAPI receives the request.
-3. Gemini API optimizes the prompt.
-4. Prompt quality score is calculated.
-5. Prompt data is stored in SQLite.
-6. Users can search, view, or delete prompts.
+2. Frontend sends request to FastAPI backend.
+3. Backend invokes Gemini API.
+4. Gemini generates an optimized prompt.
+5. Quality score is calculated.
+6. Prompt is stored in SQLite.
+7. User can search, analyze, and manage prompt history.
 
 ---
 
@@ -263,20 +277,20 @@ https://promptpilot-ai-d46a.onrender.com/docs
 
 ### Optimized Prompt Example
 
-![Result](screenshots/result.png)
+![Optimized Prompt](screenshots/result.png)
 
 ---
 
 ## 🚀 Future Enhancements
 
-* User-specific prompt history
-* React frontend
-* Frontend deployment on Vercel
-* Export prompts as PDF
-* Rate limiting
-* Prompt templates marketplace
-* CI/CD pipeline
-* Role-based authentication
+- 🌙 Dark mode
+- 📋 Copy-to-clipboard button
+- 📄 Export prompts as PDF
+- ⚛️ React frontend
+- 👥 User-specific dashboards
+- 🔔 Notifications
+- 🔄 CI/CD Pipeline
+- 🧩 Prompt template marketplace
 
 ---
 
@@ -290,4 +304,5 @@ GitHub: https://github.com/arjunkumar24b
 
 ## ⭐ Support
 
-If you found this project useful, please consider giving it a ⭐ on GitHub.
+If you found this project useful, please give it a ⭐ on GitHub.
+
