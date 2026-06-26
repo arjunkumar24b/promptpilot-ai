@@ -1,35 +1,50 @@
 # 🚀 PromptPilot AI
 
-An AI-powered prompt optimization platform that transforms vague user queries into precise, high-quality prompts for Large Language Models (LLMs) like ChatGPT, Gemini, and Claude.
+An AI-powered prompt optimization platform that transforms vague user queries into precise, context-rich, and high-quality prompts for AI models like ChatGPT, Gemini, Claude, and other LLMs.
 
 ---
 
-# 📌 Overview
+## 🌐 Live Demo
 
-PromptPilot AI helps users generate better prompts for AI platforms by converting simple or unclear user inputs into detailed, context-rich prompts. The system also provides prompt quality analysis, history management, and analytics.
+### Backend API
+
+https://promptpilot-ai-d46a.onrender.com
+
+### Swagger API Documentation
+
+https://promptpilot-ai-d46a.onrender.com/docs
 
 ---
 
-# ✨ Features
+## 📌 Overview
+
+PromptPilot AI helps users generate effective prompts by converting simple or unclear queries into detailed, structured, and optimized prompts.
+
+The application uses Google's Gemini API to enhance prompt quality and provides additional features such as prompt history, analytics, search, authentication, and Dockerized deployment.
+
+---
+
+## ✨ Features
 
 * 🤖 AI-powered prompt optimization using Gemini API
 * 📝 Generate detailed and structured prompts
-* 📊 Prompt quality scoring system
-* 💾 Save prompt history in SQLite database
+* 📊 Prompt quality scoring
+* 💾 Store prompt history using SQLite
 * 🔍 Search previously generated prompts
-* 🗑️ Delete prompt history
-* 👤 User Signup and Login
+* 🗑️ Delete saved prompts
+* 👤 User Signup & Login
 * 🔐 JWT-based Authentication
-* 📈 Analytics API for prompt statistics
+* 📈 Analytics API
 * 🌐 REST API built with FastAPI
 * 🐳 Docker support for containerized deployment
+* ☁️ Cloud deployment on Render
 * 📖 Interactive Swagger API documentation
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-## Backend
+### Backend
 
 * Python
 * FastAPI
@@ -39,23 +54,29 @@ PromptPilot AI helps users generate better prompts for AI platforms by convertin
 * JWT Authentication
 * Passlib (bcrypt)
 
-## Frontend
+### Frontend
 
 * HTML
 * CSS
 * JavaScript
 
-## DevOps & Tools
+### DevOps & Deployment
 
 * Docker
+* Render
 * Git
 * GitHub
+
+### Additional Tools
+
 * Uvicorn
 * Swagger UI
+* Pydantic
+* python-dotenv
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 promptpilot-ai/
@@ -85,17 +106,19 @@ promptpilot-ai/
 │
 ├── Dockerfile
 ├── docker-compose.yml
+├── render.yaml
 ├── .dockerignore
+├── .gitignore
 ├── requirements.txt
 ├── README.md
-└── .gitignore
+└── .env
 ```
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
-## 1. Clone Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/arjunkumar24b/promptpilot-ai.git
@@ -103,21 +126,27 @@ git clone https://github.com/arjunkumar24b/promptpilot-ai.git
 cd promptpilot-ai
 ```
 
-## 2. Create Virtual Environment
+### 2. Create Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-## 3. Activate Virtual Environment
+### 3. Activate Virtual Environment
 
-### Windows
+#### Windows
 
 ```bash
 .venv\Scripts\activate
 ```
 
-## 4. Install Dependencies
+#### Linux / MacOS
+
+```bash
+source .venv/bin/activate
+```
+
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -125,35 +154,29 @@ pip install -r requirements.txt
 
 ---
 
-# 🔑 Configure Gemini API
+## 🔑 Environment Variables
 
-Open:
+Create a `.env` file in the root directory.
 
-```text
-app/gemini_service.py
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Replace:
-
-```python
-API_KEY = "YOUR_GEMINI_API_KEY"
-```
-
-with your own Gemini API key.
-
-You can generate a key from:
+Generate your Gemini API key from:
 
 https://aistudio.google.com/app/apikey
 
 ---
 
-# ▶️ Run the Application
+## ▶️ Run Locally
+
+Start the FastAPI server:
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Backend:
+Application:
 
 ```text
 http://127.0.0.1:8000
@@ -167,15 +190,15 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# 🐳 Docker Support
+## 🐳 Docker Deployment
 
-## Build Docker Image
+### Build Docker Image
 
 ```bash
 docker build -t promptpilot-ai .
 ```
 
-## Run Docker Container
+### Run Docker Container
 
 ```bash
 docker run -p 8000:8000 promptpilot-ai
@@ -183,67 +206,81 @@ docker run -p 8000:8000 promptpilot-ai
 
 ---
 
-# 📌 API Endpoints
+## ☁️ Render Deployment
 
-| Method | Endpoint      | Description               |
-| ------ | ------------- | ------------------------- |
-| GET    | /             | Welcome Endpoint          |
-| GET    | /health       | Health Check              |
-| POST   | /signup       | Register User             |
-| POST   | /login        | User Login                |
-| POST   | /optimize     | Generate Optimized Prompt |
-| GET    | /history      | Get Prompt History        |
-| GET    | /search       | Search Prompts            |
-| DELETE | /history/{id} | Delete Prompt             |
-| GET    | /analytics    | Prompt Analytics          |
+PromptPilot AI is deployed on Render.
+
+Live API:
+
+https://promptpilot-ai-d46a.onrender.com
+
+API Docs:
+
+https://promptpilot-ai-d46a.onrender.com/docs
 
 ---
 
-# 🧠 Example Workflow
+## 📌 API Endpoints
+
+| Method | Endpoint               | Description               |
+| ------ | ---------------------- | ------------------------- |
+| GET    | `/`                    | Welcome Endpoint          |
+| GET    | `/health`              | Health Check              |
+| POST   | `/signup`              | Register User             |
+| POST   | `/login`               | User Login                |
+| POST   | `/optimize`            | Generate Optimized Prompt |
+| GET    | `/history`             | Get Prompt History        |
+| GET    | `/search`              | Search Prompts            |
+| DELETE | `/history/{prompt_id}` | Delete Prompt             |
+| GET    | `/analytics`           | Prompt Analytics          |
+
+---
+
+## 🔄 Application Workflow
 
 1. User enters a query.
-2. PromptPilot AI receives the request.
-3. Gemini API generates an optimized prompt.
-4. The system calculates a quality score.
+2. FastAPI receives the request.
+3. Gemini API optimizes the prompt.
+4. Prompt quality score is calculated.
 5. Prompt data is stored in SQLite.
-6. User can search, view, or delete previous prompts.
+6. Users can search, view, or delete prompts.
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-## API Documentation
+### API Documentation
 
 ![Swagger UI](screenshots/docs.png)
 
 ---
 
-## Prompt Generation Interface
+### Prompt Generation Interface
 
 ![Frontend](screenshots/home.png)
 
 ---
 
-## Optimized Prompt Example
+### Optimized Prompt Example
 
 ![Result](screenshots/result.png)
 
 ---
 
-# 🚀 Future Enhancements
+## 🚀 Future Enhancements
 
 * User-specific prompt history
 * React frontend
-* Deployment on Render and Vercel
+* Frontend deployment on Vercel
 * Export prompts as PDF
-* Prompt templates marketplace
 * Rate limiting
+* Prompt templates marketplace
 * CI/CD pipeline
 * Role-based authentication
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Arjun Kumar**
 
@@ -251,4 +288,6 @@ GitHub: https://github.com/arjunkumar24b
 
 ---
 
-# ⭐ If you like this project, give it a star!
+## ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
