@@ -9,7 +9,7 @@ An AI-powered prompt optimization platform that transforms vague user queries in
 ### Frontend Application
 
 **Live Website:**  
-https://your-vercel-url.vercel.app
+https://promptpilot-ai-chi.vercel.app
 
 ### Backend API
 
