@@ -1,51 +1,74 @@
+const API_URL = "https://promptpilot-ai-d46a.onrender.com";
+
 async function generatePrompt() {
+    const userInput = document.getElementById("userInput").value;
+    const platform = document.getElementById("platform").value;
+    const style = document.getElementById("style").value;
 
-    document.getElementById("loading").innerText =
-        "Generating prompt...";
+    const resultBox = document.getElementById("result");
 
-    const userInput =
-        document.getElementById("userInput").value;
+    // Validation
+    if (!userInput.trim()) {
+        alert("Please enter your problem or query.");
+        return;
+    }
 
-    const platform =
-        document.getElementById("platform").value;
+    resultBox.innerHTML = "⏳ Generating optimized prompt...";
 
-    const style =
-        document.getElementById("style").value;
-
-    const response = await fetch(
-        "http://127.0.0.1:8000/optimize",
-        {
+    try {
+        const response = await fetch(`${API_URL}/optimize`, {
             method: "POST",
-
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-
             body: JSON.stringify({
                 user_input: userInput,
                 platform: platform,
                 style: style
-            })
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to generate prompt.");
         }
-    );
 
-    const data = await response.json();
+        const data = await response.json();
 
-    document.getElementById("loading").innerText = "";
+        // Handle both old and new response formats
+        let output = "";
 
-    document.getElementById("result").innerText =
-        data.result +
-        "\n\nQuality Score: " +
-        data.quality_score + "/100";
-}
+        if (data.result) {
+            output = `
+                <h3>✨ Optimized Prompt</h3>
+                <pre>${data.result}</pre>
+            `;
+        } else {
+            output = `
+                <h3>📂 Category</h3>
+                <p>${data.category}</p>
 
+                <h3>✨ Optimized Prompt</h3>
+                <pre>${data.optimized_prompt}</pre>
 
-function copyPrompt() {
+                <h3>📊 Quality Score</h3>
+                <p>${data.quality_score || "N/A"}/100</p>
 
-    const text =
-        document.getElementById("result").innerText;
+                <h3>💡 Tips</h3>
+                <ul>
+                    ${data.tips.map(tip => `<li>${tip}</li>`).join("")}
+                </ul>
+            `;
+        }
 
-    navigator.clipboard.writeText(text);
+        resultBox.innerHTML = output;
 
-    alert("Prompt copied successfully!");
+    } catch (error) {
+        console.error(error);
+        resultBox.innerHTML = `
+            <p style="color:red;">
+                ❌ Error: Could not connect to the server.
+                Please try again after a few seconds.
+            </p>
+        `;
+    }
 }
