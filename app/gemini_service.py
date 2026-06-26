@@ -1,33 +1,28 @@
+import os
+from dotenv import load_dotenv
 from google import genai
+load_dotenv()
+API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Paste your Gemini API key here
-API_KEY = "YOUR_GEMINI_API_KEY"
 client = genai.Client(api_key=API_KEY)
 
 
 def generate_prompt(user_input, platform, style):
 
     instruction = f"""
-You are PromptPilot AI.
+    User wants optimized prompts.
 
-Transform vague user queries into highly effective prompts.
+    Platform: {platform}
+    Style: {style}
 
-User Query:
-{user_input}
+    User Query:
+    {user_input}
 
-Target AI Platform:
-{platform}
-
-Desired Style:
-{style}
-
-Generate:
-1. Category
-2. Optimized Prompt
-3. Three improvement tips.
-
-Return the response in a clear format.
-"""
+    Generate:
+    1. Category
+    2. Optimized Prompt
+    3. Three improvement tips
+    """
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
