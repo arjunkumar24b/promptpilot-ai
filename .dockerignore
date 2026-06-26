@@ -3,4 +3,5 @@ __pycache__/
 *.db
 .venv/
 venv/
+.git/
 .env

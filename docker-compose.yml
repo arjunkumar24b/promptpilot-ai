@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+
+  promptpilot:
+
+    build: .
+
+    container_name: promptpilot-ai
+
+    ports:
+      - "8000:8000"
+
+    restart: always
