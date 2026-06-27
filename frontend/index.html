@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="ABC123XYZ..." />
+
+    <meta name="google-site-verification"
+          content="ABC123XYZ..." />
+
     <title>PromptPilot AI</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,14 +15,37 @@
 
     <div class="container">
 
-        <h1>🚀 PromptPilot AI</h1>
+        <!-- Header -->
+
+        <div class="header">
+
+            <h1>🚀 PromptPilot AI</h1>
+
+            <div class="auth-buttons">
+
+                <button onclick="showLogin()">
+                    Login
+                </button>
+
+                <button onclick="showSignup()">
+                    Sign Up
+                </button>
+
+            </div>
+
+        </div>
+
         <p class="subtitle">
             Transform vague ideas into powerful AI prompts.
         </p>
 
+        <!-- Main Card -->
+
         <div class="card">
 
-            <label for="userInput">Describe what you want:</label>
+            <label for="userInput">
+                Describe what you want:
+            </label>
 
             <textarea
                 id="userInput"
@@ -27,20 +53,42 @@
                 placeholder="Example: I want to learn DSA for placements..."
             ></textarea>
 
-            <label for="platform">Choose AI Platform:</label>
+            <label for="platform">
+                Choose AI Platform:
+            </label>
 
             <select id="platform">
-                <option value="chatgpt">ChatGPT</option>
-                <option value="gemini">Gemini</option>
-                <option value="claude">Claude</option>
+                <option value="chatgpt">
+                    ChatGPT
+                </option>
+
+                <option value="gemini">
+                    Gemini
+                </option>
+
+                <option value="claude">
+                    Claude
+                </option>
             </select>
 
-            <label for="style">Prompt Style:</label>
+            <label for="style">
+                Prompt Style:
+            </label>
 
             <select id="style">
-                <option value="beginner">Beginner</option>
-                <option value="professional">Professional</option>
-                <option value="technical">Technical</option>
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="professional">
+                    Professional
+                </option>
+
+                <option value="technical">
+                    Technical
+                </option>
+
             </select>
 
             <button onclick="generatePrompt()">
@@ -49,17 +97,97 @@
 
         </div>
 
+        <!-- Result -->
+
         <div class="result-card">
+
             <h2>Generated Output</h2>
+
             <div id="result">
                 Your optimized prompt will appear here...
             </div>
+
         </div>
 
+        <!-- Login Modal -->
+
+        <div
+            id="loginModal"
+            class="modal"
+            style="display:none;"
+        >
+
+            <div class="modal-content">
+
+                <h2>Login</h2>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                >
+
+                <button onclick="loginUser()">
+                    Login
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Signup Modal -->
+
+        <div
+            id="signupModal"
+            class="modal"
+            style="display:none;"
+        >
+
+            <div class="modal-content">
+
+                <h2>Create Account</h2>
+
+                <input
+                    type="text"
+                    id="signupUsername"
+                    placeholder="Username"
+                >
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Password"
+                >
+
+                <button onclick="signupUser()">
+                    Sign Up
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+
         <footer>
+
             <p>
-                Built with ❤️ using FastAPI, Gemini AI, Docker & Render
+                Built with ❤️ using FastAPI,
+                Gemini AI, Docker & Render
             </p>
+
         </footer>
 
     </div>

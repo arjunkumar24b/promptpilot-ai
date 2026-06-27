@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from .schemas import (
@@ -21,7 +21,9 @@ from .scorer import calculate_score
 
 from .auth import (
     hash_password,
-    verify_password
+    verify_password,
+    get_optional_user,
+    get_current_user
 )
 
 from .security import create_access_token
@@ -138,8 +140,14 @@ def login(user: UserLogin):
 
 # ---------------- PROMPT OPTIMIZATION ---------------- #
 
+
+
+
 @app.post("/optimize")
-def optimize(request: PromptRequest):
+def optimize(
+    request: PromptRequest,
+    current_user=Depends(get_optional_user)
+):
 
     result = generate_prompt(
         request.user_input,
@@ -159,26 +167,36 @@ def optimize(request: PromptRequest):
         platform=request.platform,
         style=request.style,
         optimized_prompt=result,
-        quality_score=quality_score
+        quality_score=quality_score,
+        user_id=current_user.id if current_user else None
     )
 
     db.close()
 
     return {
         "result": result,
-        "quality_score": quality_score
+        "quality_score": quality_score,
+        "saved": current_user is not None
     }
-
-
 # ---------------- HISTORY ---------------- #
 
 @app.get("/history")
-def history():
+def history(
+    current_user=Depends(get_current_user)
+):
+
+    if current_user is None:
+        return {
+            "message":
+            "Please login to access your prompt history."
+        }
 
     db = SessionLocal()
 
     records = db.query(
         PromptHistory
+    ).filter(
+        PromptHistory.user_id == current_user.id
     ).all()
 
     db.close()

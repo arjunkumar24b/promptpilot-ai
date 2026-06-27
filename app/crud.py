@@ -8,14 +8,16 @@ def save_prompt(
         platform,
         style,
         optimized_prompt,
-        quality_score):
+        quality_score,
+        user_id=None):
 
     record = PromptHistory(
         user_input=user_input,
         platform=platform,
         style=style,
         optimized_prompt=optimized_prompt,
-        quality_score=quality_score
+        quality_score=quality_score,
+        user_id=user_id
     )
 
     db.add(record)
