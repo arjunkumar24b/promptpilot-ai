@@ -2,7 +2,7 @@ fastapi
 uvicorn
 pydantic
 sqlalchemy
-passlib[bcrypt]
+passlib
 python-jose[cryptography]
 python-multipart
 google-genai
